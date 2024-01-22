@@ -1,39 +1,46 @@
-import { TouchableOpacity } from 'react-native'
-import { HStack, Heading, Icon, Text, VStack, Image, Box, ScrollView } from 'native-base'
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import { HStack, Heading, Icon, Text, VStack, ScrollView } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
+import { Feather } from '@expo/vector-icons';
 
-import { useNavigation } from '@react-navigation/native'
-import { Feather } from '@expo/vector-icons'
+import { training } from '../db/trainingData';
+import { AppNavigatorRoutesProps } from '@routes/app.routes';
+import BodySvg from '@assets/body.svg';
+import { Carrossel } from '@components/Carrossel';
 
-import {training} from '../db/trainingData'
+interface TrainingItem {
+  day: string;
+  groups: string[];
+}
 
-import { AppNavigatorRoutesProps } from '@routes/app.routes'
+interface ExerciseScreenRouteParams {
+  item: TrainingItem;
+  selectedTraining: string;
+}
 
-import BodySvg from '@assets/body.svg'
-import { Carrossel } from '@components/Carrossel'
+interface ExerciseProps {
+  route: {
+    params: ExerciseScreenRouteParams;
+  };
+}
 
-export function Exercise({ route }: { route: Array<any> }) {
-  const { item, selectedTraining } = route.params
-  const navigation = useNavigation<AppNavigatorRoutesProps>()
-
-  const selectedDay = item.day;
+export function Exercise({ route }: ExerciseProps) {
+  const { item, selectedTraining } = route.params;
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
 
   function handleGoBack() {
-    navigation.goBack()
+    navigation.goBack();
   }
-  
-  const exercises = training[selectedTraining].exercises[item.day]
+
+  const selectedDay = item.day;
+  const exercises = training[selectedTraining].exercises[item.day];
 
   return (
     <VStack flex={1}>
-
       <VStack px={8} bg="gray.600" pt={12}>
         <TouchableOpacity onPress={handleGoBack}>
-          <Icon
-            as={Feather}
-            name="arrow-left"
-            color="red.500"
-            size={6}
-          />
+          <Icon as={Feather} name="arrow-left" color="red.500" size={6} />
         </TouchableOpacity>
         <HStack justifyContent="space-between" mt={4} mb={8} alignItems="center">
           <Heading fontFamily="heading" color="gray.100" fontSize="lg" flexShrink={1}>
@@ -48,8 +55,8 @@ export function Exercise({ route }: { route: Array<any> }) {
         </HStack>
       </VStack>
       <ScrollView>
-        <Carrossel data={exercises}/>
+        <Carrossel data={exercises} />
       </ScrollView>
     </VStack>
-  )
+  );
 }

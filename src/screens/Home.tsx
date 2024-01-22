@@ -11,23 +11,26 @@ import { HomeHeader } from '@components/HomeHeader';
 
 
 interface TrainingItem {
-  day: string;
-  groups: string[];
+    day: string;
+    groups: string[];
 }
 
 export function Home() {
-  const [selectedTraining, setSelectedTraining] = useState<string | null>(null);
+  const [selectedTraining, setSelectedTraining] = useState<string>('');
   const navigation = useNavigation<AppNavigatorRoutesProps>();
   const defaultTraining = "abc1";
   const date = new Date();
   const day = date.getDay();
 
-  const selectedTrainingData = training[selectedTraining] || {};
+  const selectedTrainingData = training[selectedTraining as keyof typeof training] || {};
 
-  const trainingArray: TrainingItem[] = Object.keys(selectedTrainingData.days || {}).map((key) => ({
+  let trainingArray: TrainingItem[] = [];
+  trainingArray = Object.keys(selectedTrainingData.days || {}).map((key) => ({
     day: key,
-    groups: selectedTrainingData.days[key]
+    groups: selectedTrainingData.days[key as keyof typeof selectedTrainingData.days]
   }));
+
+  console.log(trainingArray);
 
   const reorderedTrainingArray = trainingArray && trainingArray.length > 0
     ? [...trainingArray.slice(1), trainingArray[0]]
