@@ -32,8 +32,6 @@ export function Exercise({ route }: ExerciseProps) {
   function handleGoBack() {
     navigation.goBack();
   }
-
-  const selectedDay = item.day;
   const exercises = training[selectedTraining].exercises[item.day];
 
   return (
@@ -55,7 +53,7 @@ export function Exercise({ route }: ExerciseProps) {
         </HStack>
       </VStack>
       <ScrollView>
-        <Carrossel data={exercises} />
+        <Carrossel data={exercises} groups={item.groups} />
       </ScrollView>
     </VStack>
   );

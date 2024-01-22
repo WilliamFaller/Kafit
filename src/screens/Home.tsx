@@ -30,7 +30,6 @@ export function Home() {
     groups: selectedTrainingData.days[key as keyof typeof selectedTrainingData.days]
   }));
 
-  console.log(trainingArray);
 
   const reorderedTrainingArray = trainingArray && trainingArray.length > 0
     ? [...trainingArray.slice(1), trainingArray[0]]

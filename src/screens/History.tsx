@@ -1,25 +1,28 @@
-import { useState } from 'react'
-import { Heading, VStack, SectionList, Text, Center } from 'native-base'
+import { useCallback, useState } from 'react'
+import { useFocusEffect } from '@react-navigation/native';
+import { Heading, VStack, SectionList, Text } from 'native-base'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { ScreenHeader } from '@components/ScreenHeader'
 import { HistoryCard } from '@components/HistoryCard'
 
 export function History() {
-  const [exercises, setExercises] = useState([
-    {
-      title: '22.01.2024',
-      day: 'Segunda-Feira',
-      data: ['Costas e Biceps'],
-      time: '08:52'
-    },
-    {
-      title: '23.01.2024',
-      day: 'Terça-Feira',
-      data: ['Peito e Triceps'],
-      time: '08:56'
-    }
-  ]);
+  const [exercises, setExercises] = useState([]);
 
+  console.log(exercises[1]);
+  useFocusEffect(
+    useCallback(() => {
+      const loadExercises = async () => {
+        const storedExercises = await AsyncStorage.getItem('exercises');
+        if (storedExercises) {
+          setExercises(JSON.parse(storedExercises));
+        }
+      };
+      
+      loadExercises();
+    }, [])
+    );
+    
   return (
     <VStack flex={1}>
       <ScreenHeader title="Histórico de Exercícios" />

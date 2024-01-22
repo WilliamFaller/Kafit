@@ -6,6 +6,9 @@ import {
   Dimensions
 } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 import SeriesSvg from '@assets/series.svg'
 import RepetitionsSvg from '@assets/repetitions.svg'
@@ -31,6 +34,7 @@ type Props = {
     groups: string;
   }
   index?: number;
+  groups: string;
 }
 
 function ExerciseButton({ trainingStarted, handleFinishExercise }) {
@@ -75,7 +79,24 @@ export function Carrossel(exercises: ExerciseProps) {
     setExercisesFinished(prevCount => prevCount + 1);
   };
 
-  const handleFinishTrain = () => {
+  let data: string[] = []
+  data.push(exercises.groups)
+
+  const handleFinishTrain = async () => {
+    const now = new Date();
+    const title = format(now, 'dd.MM.yyyy');
+    const day = format(now, 'eeee', { locale: ptBR });
+    const time = format(now, 'HH:mm');
+    const existingExercises = await AsyncStorage.getItem('exercises');
+    let exercises = existingExercises ? JSON.parse(existingExercises) : [];
+    exercises.push({
+      title,
+      day,
+      data,
+      time
+    });
+    console.log(exercises);
+    await AsyncStorage.setItem('exercises', JSON.stringify(exercises));
     setTrainingStarted(false);
     setExercisesFinished(0);
     navigation.navigate('history')
@@ -151,4 +172,5 @@ const styles = StyleSheet.create({
     height: 250,
     borderRadius: 8,
   }
+
 });
