@@ -8,8 +8,6 @@ import { HistoryCard } from '@components/HistoryCard'
 
 export function History() {
   const [exercises, setExercises] = useState([]);
-
-  console.log(exercises[1]);
   useFocusEffect(
     useCallback(() => {
       const loadExercises = async () => {

@@ -95,7 +95,6 @@ export function Carrossel(exercises: ExerciseProps) {
       data,
       time
     });
-    console.log(exercises);
     await AsyncStorage.setItem('exercises', JSON.stringify(exercises));
     setTrainingStarted(false);
     setExercisesFinished(0);
@@ -118,7 +117,7 @@ export function Carrossel(exercises: ExerciseProps) {
                   h={80}
                   source={{ uri: item.imgUrl }}
                   alt="Nome do Exercício"
-                  resizeMode="cover"
+                  resizeMode="stretch"
                   rounded="lg"
                 />
               </Box>

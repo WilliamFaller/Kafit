@@ -64,9 +64,10 @@ export function Settings() {
             onValueChange={(itemValue) => handleTrainingSelection(itemValue)}
             selectedValue={selectedTraining}
           >
-            <Select.Item label="Treino AB 1" value="ab1" />
-            <Select.Item label="Treino ABC 1" value="abc1" />
-            <Select.Item label="Treino ABC 2" value="abc2" />
+            <Select.Item label="Treino ABC 1 F" value="abc1f" />
+            <Select.Item label="Treino ABC 2 F" value="abc2f" />
+            <Select.Item label="Treino ABC 1 M" value="abc1m" />
+            <Select.Item label="Treino ABC 2 M" value="abc2m" />
           </Select>
           <Button mt={4} bg="red.500" onPress={saveData}><Text fontSize={16} color="white">Salvar</Text></Button>
         </FormControl>
