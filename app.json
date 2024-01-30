@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "gym",
-    "slug": "gym",
-    "version": "1.0.0",
+    "name": "kafit",
+    "slug": "kafit",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000"
     },
     "plugins": [
       [
@@ -26,13 +26,24 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.faller.kafit"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d7355e7c-9e0e-4045-8b62-68c7d878a72d"
+      }
+    },
+    "owner": "faller"
   }
 }

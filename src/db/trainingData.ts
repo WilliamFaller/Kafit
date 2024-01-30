@@ -9,7 +9,7 @@ export const training = {
       'Quarta-Feira': groups[10] + ' e ' + groups[4],
       'Quinta-Feira': groups[2] + ' e ' + groups[3],
       'Sexta-Feira': groups[0] + ' e ' + groups[1],
-      'Sabado': groups[10] + ' e ' + groups[4],
+      'Sábado': groups[10] + ' e ' + groups[4],
     },
     'exercises': {
       'Segunda-Feira': [
@@ -360,7 +360,7 @@ export const training = {
       'Quarta-Feira': groups[10] + ' e ' + groups[4],
       'Quinta-Feira': groups[2] + ' e ' + groups[3],
       'Sexta-Feira': groups[0] + ' e ' + groups[1],
-      'Sabado': groups[10] + ' e ' + groups[4],
+      'Sábado': groups[10] + ' e ' + groups[4],
     },
     'exercises': {
       'Segunda-Feira': [
@@ -681,7 +681,7 @@ export const training = {
           repetitions: 10
         },
       ],
-      'Sabado': [
+      'Sábado': [
         {
           imgUrl: 'https://treinomestre.com.br/wp-content/uploads/2021/12/leg-press-horizontal-para-que-serve-como-fazer.jpg',
           title: 'Leg Press Horizontal',

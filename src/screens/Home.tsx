@@ -14,11 +14,10 @@ interface TrainingItem {
     day: string;
     groups: string[];
 }
-
 export function Home() {
-  const [selectedTraining, setSelectedTraining] = useState<string>('');
+  const [selectedTraining, setSelectedTraining] = useState<string>('abc1m');
   const navigation = useNavigation<AppNavigatorRoutesProps>();
-  const defaultTraining = "abc1";
+  const defaultTraining = "abc1m";
   const date = new Date();
   const day = date.getDay();
 
